@@ -7,7 +7,7 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <Box borderWidth={1} h="100vh" transition="0.5s ease-out">
+    <Box h="100vh" transition="0.5s ease-out">
       <Box width="full" as="main">
         {children}
       </Box>

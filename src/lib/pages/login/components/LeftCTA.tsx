@@ -4,26 +4,28 @@ import {
   useColorModeValue,
   Text,
   useBreakpointValue,
+  Box,
+  Spacer,
 } from "@chakra-ui/react";
 
+import ThemeToggle from "lib/layout/ThemeToggle";
 import Colors from "lib/styles/Colors";
 
 function LeftCTA() {
   const isMobileScreen = useBreakpointValue({ base: true, md: false });
   return (
     <Stack
+      w="100%"
+      alignItems="center"
       spacing={{ base: 10, md: 20 }}
+      direction={["row", "row", "row", "row"]}
       textAlign={[
         "center", // base
         "center", // 480px upwards
         "left", // 768px upwards
       ]}
     >
-      <Heading
-        borderWidth={1}
-        lineHeight={1.5}
-        fontSize={{ sm: "2xl", md: "5xl" }}
-      >
+      <Heading lineHeight={1.5} fontSize={{ sm: "2xl", md: "5xl" }}>
         {isMobileScreen ? null : (
           <>
             Welcome to <br />
@@ -44,6 +46,14 @@ function LeftCTA() {
           </Text>
         )}
       </Heading>
+      {isMobileScreen && (
+        <>
+          <Spacer />
+          <Box>
+            <ThemeToggle />
+          </Box>
+        </>
+      )}
     </Stack>
   );
 }
