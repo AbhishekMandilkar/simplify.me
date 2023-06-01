@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 // fonts
 import "@fontsource/plus-jakarta-sans/latin.css";
 
+import { AuthProvider } from "lib/context/AuthProvider/AuthenticationProvider";
 import { theme } from "lib/styles/theme";
 
 import App from "./App";
@@ -14,7 +15,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ColorModeScript initialColorMode={theme.config?.initialColorMode} />
-    <App />
+    <AuthProvider>
+      <ColorModeScript initialColorMode={theme.config?.initialColorMode} />
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );

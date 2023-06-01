@@ -3,11 +3,11 @@ import { Client, Account } from "appwrite";
 
 const client = new Client()
   .setEndpoint(import.meta.env.VITE_APPWRITE_URL)
-  .setProject(import.meta.env.VITE_APPWRITE_PROJECT);
+  .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
 
 const AppWriteClient = client;
 
-export const getUserData = async () => {
+const getUserData = async () => {
   try {
     const account = new Account(client);
     return await account.get();
@@ -17,7 +17,7 @@ export const getUserData = async () => {
   }
 };
 
-export const login = async (email: string, password: string) => {
+const login = async (email: string, password: string) => {
   try {
     const account = new Account(client);
     return await account.createEmailSession(email, password);
@@ -27,7 +27,7 @@ export const login = async (email: string, password: string) => {
   }
 };
 
-export const logout = async () => {
+const logout = async () => {
   try {
     const account = new Account(client);
     return await account.deleteSession("current");
@@ -37,11 +37,7 @@ export const logout = async () => {
   }
 };
 
-export const register = async (
-  email: string,
-  password: string,
-  userName: string
-) => {
+const register = async (email: string, password: string, userName: string) => {
   try {
     const account = new Account(client);
     return await account.create("unique()", email, password, userName);
@@ -50,5 +46,10 @@ export const register = async (
     throw new Error(appwriteError.message);
   }
 };
-
+export const AppWriteServices = {
+  login,
+  logout,
+  register,
+  getUserData,
+};
 export default AppWriteClient;
